@@ -1,0 +1,27 @@
+:root {
+  color-scheme: light;
+  --sms-ink: #1f2a1f;
+  --sms-surface: #fffaf1;
+  --sms-accent: #8f5f2f;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--sms-surface);
+  color: var(--sms-ink);
+  font-family: "Source Sans 3", "Segoe UI", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Space Grotesk", "Segoe UI", sans-serif;
+}

@@ -18,10 +18,22 @@ export const app = express();
 app.use(
 
   cors({
-    origin: env.CLIENT_ORIGIN,
+    origin: (origin, callback) => {
+      const allowed = [
+        env.CLIENT_ORIGIN,
+        'http://localhost:4200',
+      ];
+      // Allow requests with no origin (e.g. mobile apps, curl)
+      if (!origin || allowed.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     credentials: true,
   }),
 );
+
 app.use(express.json());
 
 app.get("/api/health", (_request, response) => {

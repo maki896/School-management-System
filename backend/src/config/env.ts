@@ -26,9 +26,8 @@ const envSchema = z
     ),
     JWT_SECRET: normalizedString(16).default(defaultJwtSecret),
     JWT_EXPIRES_IN: normalizedString().default("8h"),
-    CLIENT_ORIGIN: normalizedString()
-      .pipe(z.string().url())
-      .default("http://localhost:4200"),
+    CLIENT_ORIGIN: z.string().optional().default("http://localhost:4200"),
+
     SEED_ADMIN_EMAIL: z.string().email().default("admin@school.local"),
     SEED_TEACHER_EMAIL: z.string().email().default("teacher@school.local"),
     SEED_STUDENT_EMAIL: z.string().email().default("student@school.local"),

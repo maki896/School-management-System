@@ -16,6 +16,12 @@
     />
   </head>
   <body class="mat-typography">
+    <!-- Runtime environment injection: set NEXT_PUBLIC_API_URL in Vercel env vars -->
+    <script>
+      window.__schoolManagementEnv = {
+        apiBaseUrl: '__VITE_API_BASE_URL__'
+      };
+    </script>
     <app-root></app-root>
   </body>
 </html>

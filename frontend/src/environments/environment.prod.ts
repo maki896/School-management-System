@@ -10,5 +10,5 @@ const runtimeEnvironment =
 
 export const environment = {
   production: true,
-  apiBaseUrl: runtimeEnvironment.apiBaseUrl?.trim() || '/api',
+  apiBaseUrl: runtimeEnvironment.apiBaseUrl?.trim() || 'https://school-management-system-wkt4.onrender.com/api'
 };

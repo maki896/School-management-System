@@ -1,3 +1,4 @@
+
 import cors from "cors";
 import express from "express";
 import type { NextFunction, Request, Response } from "express";
@@ -15,25 +16,22 @@ import { HttpError } from "./utils/http-error";
 
 export const app = express();
 
-app.use(
+const clientOrigin = new URL(env.CLIENT_ORIGIN).origin;
 
+app.use(
   cors({
-    origin: (origin, callback) => {
-      const allowed = [
-        env.CLIENT_ORIGIN,
-        'http://localhost:4200',
-      ];
-      // Allow requests with no origin (e.g. mobile apps, curl)
-      if (!origin || allowed.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
+    origin: clientOrigin,
     credentials: true,
   }),
 );
 
+app.options(
+  "*",
+  cors({
+    origin: clientOrigin,
+    credentials: true,
+  }),
+);
 app.use(express.json());
 
 app.get("/api/health", (_request, response) => {
@@ -57,7 +55,6 @@ app.use(
     _next: NextFunction,
   ) => {
     if (error instanceof ZodError) {
-
       response.status(400).json({
         message: "Validation failed.",
         code: "VALIDATION_ERROR",

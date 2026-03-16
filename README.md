@@ -1,4 +1,4 @@
-# School Management System
+``# School Management System
 
 MEAN stack school management system with server-authoritative RBAC for Admin, Teacher, and Student roles.
 
